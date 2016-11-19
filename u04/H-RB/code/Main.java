@@ -21,7 +21,7 @@ public class Main {
    // Beginn TODO
     RB myRB = new RB();
     myRB.amount = 3;
-    int checkResult = myRB.programmHochladen(program);  
+    int checkResult = myRB.programmHochladen(program2);  
     // Ende TODO
     if( checkResult >= 0) {
       System.out.println("Programm hochgeladen.");
