@@ -75,7 +75,7 @@ public class Powerdrill {
    * @param bitSize eingesetzter Bohrer-Durchmesser
    */
   public Powerdrill(BitType bit, int bitSize) {
-    //g: Konstruktoren müssen Public sein.
+    //g: Konstruktoren können weder private noch static sein.
     this.bit = bit;
     this.bitSize=bitSize;
     this.power = Powerdrill.max_power;
@@ -90,7 +90,7 @@ public class Powerdrill {
    * @see Powerdrill(BitType, int)
    */
   public Powerdrill(BitType bit, int bitSize, double power) {
-    //g: Konstruktoren müssen Public sein.
+    //g: Konstruktoren können weder private noch static sein.
     this.bit = bit;
     this.bitSize = bitSize;
     if(power < Powerdrill.max_power) {
@@ -190,4 +190,17 @@ public class Powerdrill {
    * 
    */
   /*TODO h)*/ 
+
+  private void makeNoise(Material material, MoiseLevel noise. Boolean correctBit){
+    int add = 0;
+    switch(material) {
+      case Material.Wood:
+      case Material.Plastic:
+        add = 5;
+      case Material.Metall:
+        add = (3 + this.bitSize < 10 && correctBit) ? 3 + this.bitSize : 10;
+      default:
+        add = (correctBit) ? 11 : 8;
+    }
+  }
 }
