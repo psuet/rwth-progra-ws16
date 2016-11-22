@@ -1,4 +1,3 @@
-
 public class Main {
   public static void main (String [] arguments) {
     /* Wand: #
@@ -35,4 +34,4 @@ public class Main {
     }
   }
 }
-	
+  

@@ -1,4 +1,3 @@
-
 public class Main {
   public static void main (String [] arguments) {
     /* Wand: #
@@ -21,7 +20,7 @@ public class Main {
    // Beginn TODO
     RB myRB = new RB();
     myRB.amount = 3;
-    int checkResult = myRB.programmHochladen(program2);  
+    int checkResult = myRB.programmHochladen(program);  
     // Ende TODO
     if( checkResult >= 0) {
       System.out.println("Programm hochgeladen.");

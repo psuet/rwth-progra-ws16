@@ -1,10 +1,10 @@
 /**
  * Class for rb.
  * 
- * @author     Paul Sütterlin - 366676
+ * @author     Paul Suetterlin - 366676
  * @version    1.0
  */
-public class RB{
+class RB{
 
 	int amount;
 	private String[] programm;
@@ -18,7 +18,7 @@ public class RB{
 	 *
 	 * @return     -1 for error; -2 for too long programms; normal: int length of the programm
 	 */
-	public int programmHochladen(String[] input){
+	int programmHochladen(String[] input){
 		int count = 0;
 		reg = new int[2];
 		pos=0;
@@ -32,7 +32,9 @@ public class RB{
 					if(parts.length > 1){
 						return -1;
 					}
-					++count;
+					if(++count > amount){
+						return -2;
+					}
 					break;
 				case "for":
 					if(checkArgs(parts,2)){
@@ -48,10 +50,7 @@ public class RB{
 					return -1;
 			}
 		}
-		if(count > amount){
-			return -2;
-		}
-		//Copying the input array into the program
+		//Copying (!!!) the input array into the program
 		programm = new String[input.length];
 		programm = java.util.Arrays.copyOf(input, input.length);
 		return count;
@@ -78,7 +77,7 @@ public class RB{
 	 *
 	 * @return     command to execute
 	 */
-	public String schritt(){
+	String schritt(){
 		while(!(programm.length == 0 || pos>(programm.length-1))){
  			String[] parts = programm[pos].split(" ");
  			switch(parts[0]){
@@ -95,7 +94,7 @@ public class RB{
 					int forpos = pos;
 					int forreg = Integer.parseInt(parts[1]);
 					if(reg[forreg] < Integer.parseInt(parts[2])){
-						reg[forreg]++;
+						++reg[forreg];
 						++pos;
 					}else{
 						while(!(programm[pos].split(" ")[0].equals("endfor")&&(Integer.parseInt(programm[pos].split(" ")[1]) == forpos))){
