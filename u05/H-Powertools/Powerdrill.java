@@ -191,7 +191,7 @@ public class Powerdrill {
    */
   /*TODO h)*/ 
 
-  private void makeNoise(Material material, MoiseLevel noise. Boolean correctBit){
+  private void makeNoise(Material material, NoiseLevel noise, Boolean correctBit){
     int add = 0;
     switch(material) {
       case Material.Wood:
@@ -201,6 +201,7 @@ public class Powerdrill {
         add = (3 + this.bitSize < 10 && correctBit) ? 3 + this.bitSize : 10;
       default:
         add = (correctBit) ? 11 : 8;
+        noise.add(add);      
     }
   }
 }
