@@ -195,8 +195,14 @@ public class Powerdrill {
    * @param correctBit gibt an ob, der aktuelle Bohrer mit material kompatibel ist
    * 
    */
+<<<<<<< HEAD
   private void makeNoise(Material material, NoiseLevel noise, Boolean correctBit){
     //g: Die Methode sollte nur innerhalb der Klasse aufrufbar sein, da das Geraet 
+=======
+  /*TODO h)*/ 
+
+  private void makeNoise(Material material, NoiseLevel noise, Boolean correctBit){
+>>>>>>> origin/master
     int add = 0;
     switch(material) {
       case Wood:
@@ -208,6 +214,7 @@ public class Powerdrill {
         break;
       default:
         add = (correctBit) ? 11 : 8;
+        noise.add(add);      
     }
     noise.add(add);
   }
