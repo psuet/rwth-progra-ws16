@@ -13,37 +13,37 @@ public class Powerdrill {
    * Maximale Ladung der Akkus aller Bohrer.
    */
   private static final double max_power = 5.0;
-  //g: Die Maximale Ladung eines Bohrers ist nur für die charge-Methode diese Methode interessant. Daher kann hier private gewählt werden. (möglichst restriktiv)
-  //Da dieser Wert auch nicht von dem aktuellen Powerdrill abhängt kann er weiter als static betrachtet werden, auch wenn dies bei primitiven 
+  //g: Die Maximale Ladung eines Bohrers ist nur fuer die charge-Methode diese Methode interessant. Daher kann hier private gewaehlt werden. (möglichst restriktiv)
+  //Da dieser Wert auch nicht von dem aktuellen Powerdrill abhaengt kann er weiter als static betrachtet werden, auch wenn dies bei primitiven 
   //Datentypen (wie double) zu keiner anderen Behandlung durch Java fuehrt. Egal ob static oder non-static, es gibt keine Speicherduplikate. Der Möglichkeit halber habe ich es aber gesetzt.
 
   /**
    * Ladung des Akkus
    */
   private double power;
-  //g: Diese Variable sollte Private sein, da andernfalls extern die Ladung der Batterie geändert werden könnte und auch über den oben definierten Maximalbetrag erhöht werden. => private
-  //Da der Wert der Variable abhängig vom Powerdrill-Objekt ist, muss diese non-static sein (Die Ladung eines Bohrers kann bei verschiedener Nutzungsdauer der einzelnen Bohrer unterschiedlich sein).
+  //g: Diese Variable sollte Private sein, da andernfalls extern die Ladung der Batterie geaendert werden könnte und auch ueber den oben definierten Maximalbetrag erhöht werden. => private
+  //Da der Wert der Variable abhaengig vom Powerdrill-Objekt ist, muss diese non-static sein (Die Ladung eines Bohrers kann bei verschiedener Nutzungsdauer der einzelnen Bohrer unterschiedlich sein).
 
   /**
    * Durchmesser des Bohrers
    */
   private int bitSize;
-  //g: Ordnungsgemaesser Aufruf von außen ist trotz des Access-Level-Modifiers private ist über die getter und setter Methoden getBitSize bzw. setBitSize möglich. Somit gilt hier möglichst restriktiv zu sein => private 
-  //Da der Wert der Variable abhängig vom Powerdrill-Objekt ist, muss diese non-static sein (Der Bit (und damit auch die bitSize) eines jeden Bohrers kann gewechselt werden).
+  //g: Ordnungsgemaesser Aufruf von aussen ist trotz des Access-Level-Modifiers private ist ueber die getter und setter Methoden getBitSize bzw. setBitSize möglich. Somit gilt hier möglichst restriktiv zu sein => private 
+  //Da der Wert der Variable abhaengig vom Powerdrill-Objekt ist, muss diese non-static sein (Der Bit (und damit auch die bitSize) eines jeden Bohrers kann gewechselt werden).
 
   /**
    * Typ des Bohrers
    */
   private BitType bit;
-  //g: Geauso wie bei bitSize ist hier der Aufruf über getter und setter möglich => private
-  //Da der Wert der Variable abhängig vom Powerdrill-Objekt ist, muss diese non-static sein (Der Bit eines jeden Bohrers kann gewechselt werden).
+  //g: Geauso wie bei bitSize ist hier der Aufruf ueber getter und setter möglich => private
+  //Da der Wert der Variable abhaengig vom Powerdrill-Objekt ist, muss diese non-static sein (Der Bit eines jeden Bohrers kann gewechselt werden).
 
   /**
    * Lese fuer den Bohrer-Typ.
    * @return der eingesetzte Bohrer-Typ
    */
   public BitType getBitType() {
-    //g: Mit dieser Mehode kann der Bittype eines Bohrers abgefragt werden. Dies sollte von außen Möglich sein. Daher wäre private unpassend.
+    //g: Mit dieser Mehode kann der Bittype eines Bohrers abgefragt werden. Dies sollte von aussen Möglich sein. Daher waere private unpassend.
     //Da der Bit-Typ nur im Kontext eines Powerdrill-Objekt (also eines Bohrers) existiert, muss diese Methode non-static sein.
     return this.bit;
   }
@@ -52,20 +52,26 @@ public class Powerdrill {
    * @param bit zu setzender Typ
    */
   public void setBitType(BitType bit) {
+    //g: Mit dieser Mehode kann der Bittype eines Bohrers geaendert werden. Dies sollte von aussen Möglich sein. Daher waere private unpassend.
+    //Da der Bit-Typ nur im Kontext eines Powerdrill-Objekt (also eines Bohrers) existiert, muss diese Methode non-static sein.
     this.bit = bit;
   }
   /**
    * Lese Bohrer-Durchmesser
    * @return der eingesetzte Bohrer-Durchmesser
    */
-  /*TODO g)*/ int getBitSize() {
+  public int getBitSize() {
+    //g: Mit dieser Mehode kann der Bitsize eines Bohrers abgefragt werden. Dies sollte von aussen Möglich sein. Daher waere private unpassend.
+    //Da der Bit-Typ nur im Kontext eines Powerdrill-Objekt (also eines Bohrers) existiert, muss diese Methode non-static sein.
     return this.bitSize;
   }
   /**
    * Schreibe den Bohrer-Durchmesser
    * @param size neuer Bohrer-Durchmesser
    */
-  /*TODO g)*/ void setBitSize(int size) {
+  public void setBitSize(int size) {
+    //g: Diese Methode erlaubt die Bitgroesse zu aendern. Dies sollte ausserhalb der aktuellen Klasse aufrufbar sein => public
+    //Da die Methode nur im Kontext von Objekte aufrufbar sein sollte, da die aktuelle Bitgrösse abhaengig von Bohrer ist => non-static
     this.bitSize = size;
   }
 
@@ -104,7 +110,7 @@ public class Powerdrill {
    * @param ammount Anteil einer vollen Ladung, der aufgeladen werden soll.
    */
   public void charge(double amount) {
-    //g: Mit dieser Mehode kann ein explizter Bohrer aufgeladen werden. Dies sollte (und muss für ConstructionWork) logischerweise auch ausserhalb der Klasse  möglich sein . => public
+    //g: Mit dieser Mehode kann ein explizter Bohrer aufgeladen werden. Dies sollte (und muss fuer ConstructionWork) logischerweise auch ausserhalb der Klasse  möglich sein . => public
     //Da das Laden von Bohrern (und die Modifikation der Ladung) nur im Kontext eines Powerdrill-Objekt (also eines Bohrers) möglich ist, muss diese Methode non-static sein.
     this.power += Powerdrill.max_power * amount;
     if (this.power > Powerdrill.max_power) {
@@ -125,7 +131,7 @@ public class Powerdrill {
    * @return Ob erfolgreich gebohrt wurde
    */
   public boolean drill(Material material, NoiseLevel noise) {
-    //g: Mit dieser Mehode kann ein explizter Bohrer angewiesen werden durch ein Material zu bohren- Diese Anweisung sollte (und muss für ConstructionWork) auch ausserhalb der Klasse möglich sein. => public
+    //g: Mit dieser Mehode kann ein explizter Bohrer angewiesen werden durch ein Material zu bohren- Diese Anweisung sollte (und muss fuer ConstructionWork) auch ausserhalb der Klasse möglich sein. => public
     //Da das Bohren nur im Kontext eines Powerdrill-Objekt (also eines Bohrers) möglich ist, muss diese Methode non-static sein.
     boolean correctBit = false;
     for(Material mat : BitType.canHandle(this.bit)) {
@@ -149,7 +155,7 @@ public class Powerdrill {
    * @return ob noch genug Energie im Akku war.
    */
    private boolean usePower(Material material, boolean correctBit) {
-    //g: Mit dieser Mehode kann "Strom verbraucht" werden. Da dies nur möglich sein sollte, wenn der Bohrer bohrt ist eine Verfügbarkeit außerhalb der Klasse nicht notwendig => private
+    //g: Mit dieser Mehode kann "Strom verbraucht" werden. Da dies nur möglich sein sollte, wenn der Bohrer bohrt ist eine Verfuegbarkeit ausserhalb der Klasse nicht notwendig => private
     //Da das Verbrauchen nur im Kontext eines konkreten Powerdrill-Objekt (also eines Bohrers) möglich ist, muss diese Methode non-static sein.
     if(correctBit && this.power > 0.5) {
       switch(material) {
@@ -189,18 +195,20 @@ public class Powerdrill {
    * @param correctBit gibt an ob, der aktuelle Bohrer mit material kompatibel ist
    * 
    */
-  /*TODO h)*/ 
-
-  private void makeNoise(Material material, MoiseLevel noise. Boolean correctBit){
+  private void makeNoise(Material material, NoiseLevel noise, Boolean correctBit){
+    //g: Die Methode sollte nur innerhalb der Klasse aufrufbar sein, da das Geraet 
     int add = 0;
     switch(material) {
-      case Material.Wood:
-      case Material.Plastic:
+      case Wood:
+      case Plastic:
         add = 5;
-      case Material.Metall:
+        break;
+      case Metal:
         add = (3 + this.bitSize < 10 && correctBit) ? 3 + this.bitSize : 10;
+        break;
       default:
         add = (correctBit) ? 11 : 8;
     }
+    noise.add(add);
   }
 }

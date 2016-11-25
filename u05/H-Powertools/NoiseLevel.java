@@ -6,38 +6,37 @@
  */
 public class NoiseLevel{
 	/**
-	 * aktueller Geräuschpegel
+	 * aktueller Geraeuschpegel
 	 */
 	public int geraeuschpegel;
 
 	/**
-	 * Konstruktor für das Objekt. Setzt den Geräuschpegel auf 0
+	 * Konstruktor fuer das Objekt. Setzt den Geraeuschpegel auf 0
 	 */
 	public NoiseLevel(){		
 		geraeuschpegel = 0;
 	}
 
 	/**
-	 * Erlaubt es das aktuelle Geräuschniveu aufgrund eines neuen Geräusches anzupassen.
-	 * Dabei wird der Geraeuschpegel anhand des Maximums ausgewählt
-	 * Sind der ursprüngliche und der neue Pegel jeweils minimum 10, so wird 1 addiert.
-	 * @param      newLevel  Pegel des neuen Geräusches
+	 * Erlaubt es das aktuelle Geraeuschniveu aufgrund eines neuen Geraeusches anzupassen.
+	 * Dabei wird der neue Geraeuschpegel anhand des Maximums ausgewaehlt
+	 * Sind der urspruengliche und der neue Pegel jeweils minimum 10, so wird 1 addiert.
+	 * @param      newLevel  Pegel des neuen Geraeusches
 	 */
 	public void add(int newLevel){
-		int add = (newLevel > 9 && geraeuschpegel > 9) ? 0 : 1;
-		geraeuschpegel = (newLevel > geraeuschpegel) ? newLevel : geraeuschpegel;
-		geraeuschpegel += add;
+		int extra = (newLevel > 9 && geraeuschpegel > 9) ? 1 : 0;
+		geraeuschpegel = Math.max(geraeuschpegel, newLevel) + extra;
 	}
 
 	/**
-	 * Liefert eine String Representation des Objektes zurück. Dabei gilt für 
+	 * Liefert eine String Representation des Objektes zurueck. Dabei gilt fuer 
 	 * Geraeuschpegel < 2 die Ausgabe "leise",
 	 * Geraeuschpegel >= 2 aber < 5 die Ausgabe "normal",
 	 * Geraeuschpegel >= 5 aber < 10 die Ausgabe "laut",
 	 * Geraeuschpegel >= 10 aber < 12 die Ausgabe "LAUT",
 	 * und Geraeuschpegel >=12 die Ausgabe "fuchtbar laut".
 	 *
-	 * @return     Beschreibung der Lautstärke als String ("leise", "normal", "laut", "LAUT", "furchtbar laut") s. Methodenbeschreibung
+	 * @return     Beschreibung der Lautstaerke als String ("leise", "normal", "laut", "LAUT", "furchtbar laut") s. Methodenbeschreibung
 	 */
 	public String toString(){
 		if(geraeuschpegel < 2){
