@@ -8,7 +8,7 @@ public class NoiseLevel{
 	/**
 	 * aktueller Geraeuschpegel
 	 */
-	public int geraeuschpegel;
+	private int geraeuschpegel;
 
 	/**
 	 * Konstruktor fuer das Objekt. Setzt den Geraeuschpegel auf 0
