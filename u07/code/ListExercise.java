@@ -5,12 +5,12 @@ public class ListExercise {
     }
 
     private static List merge(List first, List second
-    ) {
+                             ) {
         // IMPLEMENT ME
     }
 
     /**
-     * Divides a list of at least two elements into two lists of the same 
+     * Divides a list of at least two elements into two lists of the same
      * length (up to rounding).
      */
     private static List[] divide(List list) {
@@ -23,14 +23,14 @@ public class ListExercise {
         res[1] = list;
         return res;
     }
-    
+
     /**
-     * Creates a list from the given inputs and outputs the sorted list and 
+     * Creates a list from the given inputs and outputs the sorted list and
      * the original list thereafter.
      */
     public static void main(String[] args) {
         if (args != null && args.length > 0) {
-            List list = buildList(0,args);
+            List list = buildList(0, args);
             System.out.println(mergesort(list));
             System.out.println(list);
         }
@@ -41,10 +41,10 @@ public class ListExercise {
      */
     private static List buildList(int i, String[] args) {
         if (i < args.length) {
-            return new List(buildList(i + 1,args), Integer.parseInt(args[i]));
+            return new List(buildList(i + 1, args), Integer.parseInt(args[i]));
         } else {
             return List.EMPTY;
         }
     }
-    
+
 }

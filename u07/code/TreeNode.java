@@ -74,16 +74,38 @@ public class TreeNode {
    * @return true, falls x enthalten ist, sonst false
    */
   public boolean simpleSearch(int x) {
-    //TODO a)
-    return false;
-    //Ende TODO
+    if (this.value == x) {
+      return true;
+    } else {
+      if (this.value < x && this.left != null) {
+        return this.left.simpleSearch(x);
+      } else if (this.value > x && this.right != null) {
+        return this.right.simpleSearch(x);
+      } else {
+        return false;
+      }
+    }
   }
 
   /**
    * Fuegt x in diesen Teilbaum ein.
    */
   public void insert(int x) {
-    //TODO b)
+    if (this.value != x) {
+      if (this.value < x) {
+        if (this.left != null) {
+          this.left.insert(x);
+        } else {
+          this.left = new TreeNode(x);
+        }
+      } else {
+        if (this.right != null) {
+          this.right.insert(x);
+        } else {
+          this.right = new TreeNode(x);
+        }
+      }
+    }
   }
 
   /**
@@ -106,27 +128,27 @@ public class TreeNode {
     return "TreeNode.toString() nicht implementiert!";
     //Ende TODO
   }
- 
+
   /**
    * Erzeugt eine dot Repraesentation in str
    */
   public int toDot(StringBuilder str, int nullNodes) {
-    if(this.hasLeft()) {
+    if (this.hasLeft()) {
       str.append(this.getValueString() + " -> " + this.left.getValueString() + ";"
-        + System.lineSeparator());
+                 + System.lineSeparator());
       nullNodes = this.left.toDot(str, nullNodes);
     } else {
       str.append("null" + nullNodes + "[shape=point]" + System.lineSeparator()
-        + this.getValueString() + " -> null" + nullNodes + ";" + System.lineSeparator());
+                 + this.getValueString() + " -> null" + nullNodes + ";" + System.lineSeparator());
       nullNodes += 1;
     }
-    if(this.hasRight()) {
+    if (this.hasRight()) {
       str.append(this.getValueString() + " -> " + this.right.getValueString() + ";"
-        + System.lineSeparator());
+                 + System.lineSeparator());
       nullNodes = this.right.toDot(str, nullNodes);
     } else {
       str.append("null" + nullNodes + "[shape=point]" + System.lineSeparator()
-        + this.getValueString() + " -> null" + nullNodes + ";" + System.lineSeparator());
+                 + this.getValueString() + " -> null" + nullNodes + ";" + System.lineSeparator());
       nullNodes += 1;
     }
     return nullNodes;

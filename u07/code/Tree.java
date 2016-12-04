@@ -22,7 +22,7 @@ public class Tree {
    * Erstellt einen Baum mit den vorgegebenen Zahlen.
    */
   public Tree(int ... xs) {
-    for(int x : xs) {
+    for (int x : xs) {
       this.insert(x);
     }
   }
@@ -41,7 +41,11 @@ public class Tree {
    * @param x einzufuegende Zahl
    */
   public void insert(int x) {
-    //TODO b)
+    if (root == null) {
+      root = new TreeNode(x);
+    } else {
+      root.insert(x);
+    }
   }
 
   /**
@@ -49,9 +53,11 @@ public class Tree {
    * @return true, falls x im Baum enthalten ist, sonst false
    */
   public boolean simpleSearch(int x) {
-    //TODO a)
-    return false;
-    //Ende TODO
+    if (this.root != null) {
+      return this.root.simpleSearch(x);
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -77,15 +83,15 @@ public class Tree {
    * Wandelt den Baum in einen Graphen im dot Format um.
    */
   public String toDot() {
-    if(this.isEmpty()) {
+    if (this.isEmpty()) {
       return "digraph { null[shape=point]; }";
     }
     StringBuilder str = new StringBuilder();
     this.root.toDot(str, 0);
     return "digraph {" + System.lineSeparator()
-      + "graph [ordering=\"out\"];" + System.lineSeparator()
-      + str.toString()
-      + "}" + System.lineSeparator();
+           + "graph [ordering=\"out\"];" + System.lineSeparator()
+           + str.toString()
+           + "}" + System.lineSeparator();
   }
 
   /**
@@ -115,11 +121,11 @@ public class Tree {
    */
   public static void main(String[] args) {
     Random prng = new Random();
-    
+
     int nodeCount = prng.nextInt(10) + 5;
     Tree myTree = new Tree();
     System.out.println("Aufgabe b): Zufaelliges Einfuegen");
-    for(int i = 0; i < nodeCount; ++i) {
+    for (int i = 0; i < nodeCount; ++i) {
       myTree.insert(prng.nextInt(30));
     }
 
@@ -127,8 +133,8 @@ public class Tree {
     myTree.insert(3);
     myTree.insert(23);
 
-    if(args.length > 0) {
-      if(myTree.writeToFile(args[0])) {
+    if (args.length > 0) {
+      if (myTree.writeToFile(args[0])) {
         System.out.println("Baum als DOT File ausgegeben in Datei " + args[0]);
       }
     } else {
@@ -136,9 +142,9 @@ public class Tree {
     }
 
     System.out.println("Aufgabe a): Suchen nach zufaelligen Elementen");
-    for(int i = 0; i < nodeCount; ++i) {
+    for (int i = 0; i < nodeCount; ++i) {
       int x = prng.nextInt(30);
-      if(myTree.simpleSearch(x)) {
+      if (myTree.simpleSearch(x)) {
         System.out.println(x + " ist enthalten");
       } else {
         System.out.println(x + " ist nicht enthalten");
@@ -147,15 +153,15 @@ public class Tree {
 
     System.out.println("Aufgabe c): geordnete String-Ausgabe");
     System.out.println(myTree.toString());
-    
+
     System.out.println("Aufgabe d): Suchen nach vorhandenen Elementen mit Rotation.");
     myTree.search(3);
     myTree.search(23);
     myTree.search(15);
-    if(args.length > 1) {
-      if(myTree.writeToFile(args[1])) {
+    if (args.length > 1) {
+      if (myTree.writeToFile(args[1])) {
         System.out.println("Baum nach Suchen von 15, 3 und 23 als DOT File ausgegeben in Datei "
-            + args[1]);
+                           + args[1]);
       }
     } else {
       System.out.println("Keine Ausgabe des Baums in Datei, zu wenige Aufrufparameter.");
