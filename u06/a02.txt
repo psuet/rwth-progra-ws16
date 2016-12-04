@@ -1,0 +1,38 @@
+Die Ausgaben aller implementierter Methoden sind unabhängig vom Objekt b und auch von den übergebenen Parametern.
+
+a) Ausgabe: 4.0
+Bei der Initialisierung von b1 wird der 1ste Konstruktor aufgerufen, da dieser 4 ints benötigt und eben genau diese übergeben werden. Der Wert vom Double b1.d wird dabei durch Autoboxing von 4.0 gesetzt. Bei der Ausgabe wird der Double dann als 4.0 interpretiert.
+
+b) Ausgabe: 12
+Bei dieser Ausgabe ist wird die Implementation von f mit der Signatur (f(Double x, long y)) aufgerufen, da hier nur ein Boxing vom double 8.0 notwendig ist. Die Verwendung der 1 Implementation von f scheidet als Möglichkeit aus, da beim Cast vom double zum int Informationen verloren gehen (können). Bei Verwendung der 3. Implementation könnte es ebenfalls zu Informationsverlust kommen, da der long zum int gecastet werden müsste. Der return-Wert der Implementation ist (f(Double x, long y)). Daher erfolgt die Ausgabe dementsprechend.
+
+c) Ausgabe: 13
+Bei dieser Ausgabe wird die letzte Implementation von f mit der Signatur f(double x, int y) gewählt, da die übergebenen Parameter genau von  Typ double (10d) und int(17) Der return-Wert ist immer ein Integer mit dem Wert 13. Dieses Objekt wird bei der Ausgabe als 13 interpretiert.
+
+
+d) Ausgabe: 11
+Die an die Methode übgebenen Parameter sind vom Typ int und long. Daher wird die erste Implementation von f (f(int x, float y)) ausgeführt. Dies geschieht, da hier kein Autoboxing notwendig ist und der long 6 ohne Verlust von Information implizit zu einem float gecastet werden kann. Der return-Wert dieser Methode ist 11 und wird genauso ausgegeben.
+
+e) Ausgabe: 6.0
+Bei der Initialiserung von b2 wird erneut der erste Konstruktor aufgerufen, da hier nur 1x Unboxing vorgenommen werden muss (b1.i1 wird von Integer zu int), anstatt von Cast und Boxing (6 von int zu Double) bzw. Casts (6 von int zu float) der 2. Variante. Entsprechend des Konstruktors wird b2.f als float des 3. Parameters (int 6) gesetzt. Daher erfolgt die Ausgabe dementsprechend.
+
+f) Ausgabe: 13
+Hier wird die 3. f-Methode (f(double x, int y)) aufgerufen, da b1.f per Def. ein float ist und b1.i2 entsprechend ein int. Für die Ausführung dieser Methode muss folglich nur der 1. Parameter vom Typ float in einen double konvertiert werden. Eine Methode f mit der Signatur f(float x, int y) existiert nicht und alle anderen Methoden f benötigen mehr als 1 impliziten Cast. Der return-Wert dieser Methode ist ein Integer mit dem Wert 13. Dieser wird bei der Ausgabe als 13 interpretiert.
+
+g) Ausgabe: 1.5
+Bei der Initialisierung von b3 wird der 2. Konstruktor aufgerufen, da hier die Verwendung des 1. zum Verlust von Informationen führen würde. Dies liegt an dem Wert 1.5. b2.i1 ist ein int, genauso wie 14 und 16. In diesem Fall wird 16 vom int zum float gecastet und 1.5 wird in einen Double "geboxt". Nach der Definition des Konstruktors wird der dritte Parameter (1.5) der Eigenschaft d vom Typ Double zugewiesen. Dieses Objekt vom Typ Double wird bei der Ausgabe automatisch als 1.5 interpretiert. 
+
+h) Ausgabe: 8.0
+Bei dieser Ausgabe wird die 2. Implementation der Methode g gewählt (g(double x)), da zur Verwendung eben dieser b1.i1 (per Def. vom Typ int) nur zum double konvertiert werden muss. Bei der anderen Implementation müsste zusätzlich ein Autoboxing zum Float vorgenommen worden. Der return-Wert dieser Implementation ist unabhängig von der Eingabe 8f. 8f ist der float 8.0 weshalb die Ausgabe eben dieses ausgibt. 
+
+i) Ausgabe: 7.0
+Bei dieser Ausgabe wird ein Objekt vom Typ Float mit dem Wert 18 an die Methode g übergebem. Da eine Methode mit genau dieser Signatur vorhanden ist (g(Float x)) wird diese gewählt. Der return-Wert dieser Methode ist immer 7.0, was auch entsprechend als solches ausgegeben wird.
+
+j) Ausgabe: 13
+Bei dieser Methode wird die letzte Implementation der Methode f aufgerufen (f(double x, int y)), da:
+
+1. Parameter: Der 1. Parameter ist vom Typ float, da beim Aufruf von b2.g(19f) die 2. Implementation der Methode g (g(double x)) aufgerufen, da hier nur ein impliziter Cast von float zu double notwendig ist. Im Falle der anderen Implementation wäre ein Boxing notwendig. Der Rückgabewert der Methode ist 8f, auch wenn der konkrete Wert irrelevant ist.
+
+2. Parameter: Der 2. Parameter ist offensichtlich vom Typ int.
+
+Daher wird die Implementation von f mit der Signatur f(double x, int y) aufgerufen, da hier nur ein impliziter Cast für den ersten Parameter von float zu double notwendigt ist und keine Implementation mit der Signatur f(float x, int y) existiert. Andere Implementationen erfordern entweder Boxing oder führen zu Informationsverlust.

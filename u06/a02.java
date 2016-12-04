@@ -52,6 +52,9 @@ public class a02{
 		out.println(b3.g(b1.i1));
 		out.println(b3.g(new Float(18)));
 		out.println(b3.f(b2.g(19f),21));	
+		out.println();	
+		//Zusatzausgabe zur Verifizierung der Begründung.
+		out.println(b2.g(19f));	
 	}
 
 
