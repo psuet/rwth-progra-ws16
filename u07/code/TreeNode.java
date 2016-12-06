@@ -124,7 +124,7 @@ public class TreeNode {
    * Geordnete Liste aller Zahlen, die in diesem Teilbaum gespeichert sind.
    */
   public String toString() {
-    //TODO c)
+    //TODO c) a 
     return "TreeNode.toString() nicht implementiert!";
     //Ende TODO
   }
