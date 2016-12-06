@@ -74,13 +74,13 @@ public class TreeNode {
    * @return true, falls x enthalten ist, sonst false
    */
   public boolean simpleSearch(int x) {
-    if (this.value == x) {
+    if (this.getValue() == x) {
       return true;
     } else {
-      if (this.value < x && this.left != null) {
-        return this.left.simpleSearch(x);
-      } else if (this.value > x && this.right != null) {
-        return this.right.simpleSearch(x);
+      if (this.getValue() < x && this.hasLeft()) {
+        return this.getLeft().simpleSearch(x);
+      } else if (this.getValue() > x && this.hasRight()) {
+        return this.getRight().simpleSearch(x);
       } else {
         return false;
       }
@@ -91,16 +91,16 @@ public class TreeNode {
    * Fuegt x in diesen Teilbaum ein.
    */
   public void insert(int x) {
-    if (this.value != x) {
-      if (this.value < x) {
+    if (this.getValue() != x) {
+      if (this.getValue() > x) {
         if (this.hasLeft()) {
-          this.left.insert(x);
+          this.getLeft().insert(x);
         } else {
           this.left = new TreeNode(x);
         }
       } else {
         if (this.hasRight()) {
-          this.right.insert(x);
+          this.getRight().insert(x);
         } else {
           this.right = new TreeNode(x);
         }
@@ -115,28 +115,37 @@ public class TreeNode {
    * @return die neue Wurzel des Teilbaums
    */
   public TreeNode rotationSearch(int x) {
-    //TODO d)
-    return null;
-    //Ende TODO
-  }
+  /*
+    if(x == this.getValue()){
+      return this;
+    }else{ 
+      if(x<this.getValue() && this.hasLeft()){
+        TreeNode node = this.getLeft().rotationSearch(x);
+        this.left = node.getRight();
+        node.right = this;
+      }else if(x>this.getValue() && this.hasRight()){
+        TreeNode node = this.getRight().rotationSearch(x);
+        this.right = node.getLeft();
+        node.left = this; 
+      }
+      return this;
+    }
+  */}
 
   /**
    * Geordnete Liste aller Zahlen, die in diesem Teilbaum gespeichert sind.
    */
   public String toString() {
-    //TODO c) Check functionality.
     String str = "";
     if (this.hasLeft()){
-      str += this.left.toString();
-    }else if(this.hasRight()){
-      str += (this.value + ", ");
-      str += this.right.toString();
-    }else{
-      str += (this.value + ", ");
+      str += this.getLeft().toString() + ", ";
+    } 
+      str += this.getValueString();
+    if (this.hasRight()) {
+      str += ", " + this.getRight().toString();
     }
     return str;
   }
-
   /**
    * Erzeugt eine dot Repraesentation in str
    */

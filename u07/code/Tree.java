@@ -65,10 +65,18 @@ public class Tree {
    * @return true, falls x im Baum enthalten ist, sonst false
    */
   public boolean search(int x) {
-    //TODO d)
+   return false;
+   /*NOT WORKING 
+    if(!this.isEmpty()){
+      TreeNode res = this.root.rotationSearch(x);
+      this.root = res;
+      if (res.getValue() == x){
+        return true;
+      }
+    }
     return false;
-    //Ende TODO
   }
+  */
 
   /**
    * Sortierte Ausgabe aller Elemente.
