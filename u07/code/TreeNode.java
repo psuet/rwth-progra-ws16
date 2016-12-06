@@ -93,13 +93,13 @@ public class TreeNode {
   public void insert(int x) {
     if (this.value != x) {
       if (this.value < x) {
-        if (this.left != null) {
+        if (this.hasLeft()) {
           this.left.insert(x);
         } else {
           this.left = new TreeNode(x);
         }
       } else {
-        if (this.right != null) {
+        if (this.hasRight()) {
           this.right.insert(x);
         } else {
           this.right = new TreeNode(x);
@@ -124,9 +124,17 @@ public class TreeNode {
    * Geordnete Liste aller Zahlen, die in diesem Teilbaum gespeichert sind.
    */
   public String toString() {
-    //TODO c) a 
-    return "TreeNode.toString() nicht implementiert!";
-    //Ende TODO
+    //TODO c) Check functionality.
+    String str = "";
+    if (this.hasLeft()){
+      str += this.left.toString();
+    }else if(this.hasRight()){
+      str += (this.value + ", ");
+      str += this.right.toString();
+    }else{
+      str += (this.value + ", ");
+    }
+    return str;
   }
 
   /**

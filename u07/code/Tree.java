@@ -41,7 +41,7 @@ public class Tree {
    * @param x einzufuegende Zahl
    */
   public void insert(int x) {
-    if (root == null) {
+    if (isEmpty()) {
       root = new TreeNode(x);
     } else {
       root.insert(x);
@@ -53,7 +53,7 @@ public class Tree {
    * @return true, falls x im Baum enthalten ist, sonst false
    */
   public boolean simpleSearch(int x) {
-    if (this.root != null) {
+    if (!isEmpty()) {
       return this.root.simpleSearch(x);
     } else {
       return false;
@@ -74,9 +74,12 @@ public class Tree {
    * Sortierte Ausgabe aller Elemente.
    */
   public String toString() {
-    //TODO c)
-    return "Tree.toString() nicht implementiert!";
-    //Ende TODO
+    String str=("tree[");
+    if(!isEmpty()){
+      str += root.toString();
+    }
+    str +="]";
+    return str;
   }
 
   /**
