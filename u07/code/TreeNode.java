@@ -115,6 +115,7 @@ public class TreeNode {
    * @return die neue Wurzel des Teilbaums
    */
   public TreeNode rotationSearch(int x) {
+    return this;
   /*
     if(x == this.getValue()){
       return this;

@@ -77,7 +77,7 @@ public class Tree {
     return false;
   }
   */
-
+  }
   /**
    * Sortierte Ausgabe aller Elemente.
    */
