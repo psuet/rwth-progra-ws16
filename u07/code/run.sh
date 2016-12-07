@@ -13,3 +13,9 @@ echo "Run Converter for dot-Files
 
 dot -Tpdf t1.dot > t1.pdf
 dot -Tpdf t2.dot > t2.pdf
+
+echo "Open Files
+"
+
+xdg-open t1.pdf
+xdg-open t2.pdf
