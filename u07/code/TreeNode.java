@@ -115,23 +115,37 @@ public class TreeNode {
    * @return die neue Wurzel des Teilbaums
    */
   public TreeNode rotationSearch(int x) {
-    return this;
-  /*
-    if(x == this.getValue()){
-      return this;
-    }else{ 
-      if(x<this.getValue() && this.hasLeft()){
-        TreeNode node = this.getLeft().rotationSearch(x);
-        this.left = node.getRight();
-        node.right = this;
-      }else if(x>this.getValue() && this.hasRight()){
-        TreeNode node = this.getRight().rotationSearch(x);
-        this.right = node.getLeft();
-        node.left = this; 
-      }
-      return this;
-    }
-  */}
+    if (x == value) {
+            return this;
+        }
+        else if (x < value && hasLeft()) {
+ 
+            TreeNode result = left.rotationSearch(x);
+ 
+            if (result != null) {
+                // Rotate result up
+                this.left = result.right;
+                result.right = this;
+            }
+ 
+            return result;
+        } 
+        else if (x > value && hasRight()) {
+ 
+            TreeNode result = right.rotationSearch(x);
+ 
+            if (result != null) {
+                // Rotate result up
+                this.right = result.left;
+                result.left = this;
+            }
+ 
+            return result;
+        } 
+        else {
+            return null;
+        }
+  }
 
   /**
    * Geordnete Liste aller Zahlen, die in diesem Teilbaum gespeichert sind.
