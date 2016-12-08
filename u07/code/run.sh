@@ -1,10 +1,11 @@
 #!/bin/bash
-echo "Compile Ü07 
+echo "Test
+Compile Ü07 
 "
 javac Tree.java
 
 echo "Run Ü07 mit Parametern 't1.dot t2.dot'
-"
+	"
 
 java Tree t1.dot t2.dot
 
