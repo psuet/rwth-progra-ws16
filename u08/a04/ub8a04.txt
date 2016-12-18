@@ -1,0 +1,50 @@
+Aufgabe 4 (Überschreiben, Überladen und Verdecken)
+
+(a)
+ (1) A aa1 = new A(1L); -> es wird der erste Konstruktor von A mit der Signatur A(L) aufgerufen (public A(long x))
+	aa1.x = 23; // da int x = 23; (Standardwert)
+	A.y = 0; // da static int y = 0; (Standardwert)
+     Ausgabe: 
+	23
+	0
+
+ (2) A aa2 = new A(42); -> es wird der zeite Konstruktor von A mit der Signatur A(I) aufgerufen (public A(int x))
+	aa2.y = 42; //da int x = 0; y += 42; -> y = 42;
+     Ausgabe:
+	42
+
+ (3) B bb = new B(); -> zuerst wird der erste Konstruktor von B mit der Signatur B() aufgerufen (public B()),
+                        danach folgt super(1), was den zweiten Konstruktor von A mit der Signatur A(I) aufruft,
+                        zuletzt wird durch new A(2); nocheinmal der zweite Konstruktor von A aufgerufen mit der Signatur A(I) (jeweils public A(int x))	
+	bb.x = 18; // da int x = 17; x++; -> x = 18;
+	((A) bb).x = 23; // da int x = 23; (Standardwert für x in A)
+	bb.y = 45; // da static int y = 42; y += 1; y = 43; y += 2; -> y = 45;
+     Ausgabe:
+	18
+	23
+	45
+
+ (4) A ab = new B(3); -> zuerst wird der zweite Konstruktor von B mit der Signatur B(I) aufgerufen (public B(int x)),
+                         danach folgt super(x), was den zweiten Konstruktor von A mit der Signatur A(I) aufruft (public A(int x))
+	ab.x = 5; // da super.x = y + 1; y = 4;
+	((B) ab).x = 17; // da int x = 17; (Standardwert)
+	A.y = 4; // da y = x + 1; x = 3;
+
+     Ausgabe:
+	5
+	17
+	4
+
+(b)
+ int i = 1;
+ long lo = 2;
+ byte b = 3;
+
+ (1) aa1.f(i, ab); // Es wird die Funktion mit der Signatur A.f(IA) aufgerufen
+ (2) aa1.f(lo, bb); // Es wird die Funktion mit der Signatur A.f(LA) aufgerufen
+ (3) aa1.f(b, ab); // Es wird die Funktion mit der Signatur A.f(IA) aufgerufen
+ (4) bb.f(i, bb); // Es wird die Funktion mit der Signatur B.f(IB) aufgerufen
+ (5) bb.f(lo, ab); // Es wird die Funktion mit der Signatur B.f(LA) aufgerufen
+ (6) bb.f(lo, bb); // Es wird die Funktion mit der Signatur B.f(LB) aufgerufen
+ (7) ab.f(b, bb); // Es wird die Funktion mit der Signatur A.f(Byte B) aufgerufen
+ (8) ab.f(lo, bb); // Es wird die Funktion mit der Signatur B.f(LA) aufgerufen
