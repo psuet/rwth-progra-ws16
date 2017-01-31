@@ -33,3 +33,7 @@ endetIn(isskogel,tal).
 %c
 gleicherstartpunkt(X,Y) :- endetIn(Z,X), endetIn(Z,Y).
 gleicherstartpunkt(X,Y) :- start(X), start(Y).
+
+%d
+anfaengerGeeignet(X) :- blau(X), endetIn(X,tal).
+anfaengerGeeignet(X) :- blau(X), endetIn(X,Y), anfaengerGeeignet(Y).
