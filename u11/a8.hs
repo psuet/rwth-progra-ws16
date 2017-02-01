@@ -20,10 +20,10 @@ nextElement i (x : xs) =  if (x == i) then firstElement xs else nextElement i xs
 
 previousElement :: Int -> [Int] -> Int
 previousElement _ [x] = 0
-previousElement i (x : xs) =  if ((firstElement xs) == i) then x else previousElement i xs
+previousElement i (x : xs) =  if x == i then 0 else (if ((firstElement xs) == i) then x else previousElement i xs)
 
 -- Ist zwar logisch, funktioniert aber nicht!
 -- primes, nextElement und previousElement tun was sie sollen
--- Problem ist also irgendwie der Filter!
+-- Problem ist also irgendwie der Filter! - Der gibt zu viel aus
 goodPrimes :: [Int]
 goodPrimes = filter (\x -> x * x > (previousElement x primes) * (nextElement x primes)) primes
