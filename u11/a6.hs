@@ -14,4 +14,4 @@ filterList f Nil = Nil
 
 -- Teilaufgabe b)
 divisibleBy :: Int -> List Int -> List Int
-divisibleBy n l = filterList (\x -> x `mod` n == 0) l+
+divisibleBy n l = filterList (\x -> x `mod` n == 0) l
