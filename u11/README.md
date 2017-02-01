@@ -2,4 +2,3 @@
 * A2
 * A4 ii) & iii)
 * A6 a), c), d), e), f) 
-* A8 (Fehlerbehebung :-D)
