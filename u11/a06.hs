@@ -15,3 +15,14 @@ filterList f Nil = Nil
 -- Teilaufgabe b)
 divisibleBy :: Int -> List Int -> List Int
 divisibleBy n l = filterList (\x -> x `mod` n == 0) l
+
+-- Teilaufgabe c)
+foldList :: (a-> b -> b) -> b -> List a -> b
+
+-- Teilaufgabe d)
+listMaximum :: List Int -> Int
+
+--Teilaufgabe e)
+zipLists :: (a-> b -> c) -> List a -> List b -> List c
+
+--Teilaufgabe f)
