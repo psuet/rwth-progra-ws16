@@ -22,8 +22,12 @@ verzweigunggsgrad (IndexKnoten _ _ xs) = countList xs
 
 --c)
 datenListe :: MulTree a -> [a]
-datenListe (DatenKnoten a) = a
-datenListe (IndexKnoten _ _ (x:xs)) = datenListe x :  
+datenListe (DatenKnoten a) = a:[]
+datenListe (IndexKnoten a b xs) = a:b:iterateList xs
+		where
+			iterateList :: [MulTree a] -> [a]
+			iterateList [] = []
+			iterateList (x:xs) = datenListe x ++ iterateList xs
 
 {--d)
 datenIntervalle :: MulTree Int ->-}
