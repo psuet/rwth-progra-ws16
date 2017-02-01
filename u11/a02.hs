@@ -20,15 +20,22 @@ verzweigunggsgrad (IndexKnoten _ _ xs) = countList xs
 			countList [] = 0
 			countList (x:xs) = 1 + verzweigunggsgrad x + countList xs --gibt noch lediglich Gesamtverzweigung und nicht Maximalverzweigung an.
 
---c)
-datenListe :: MulTree a -> [a]
-datenListe (DatenKnoten a) = a:[]
-datenListe (IndexKnoten a b xs) = a:b:iterateList xs
+--b)
+verzweigunggsgrad :: MulTree a -> Int
+verzweigunggsgrad (DatenKnoten _) = []
+verzweigunggsgrad (IndexKnoten _ _ xs) = maxInt (makeList xs)
 		where
-			iterateList :: [MulTree a] -> [a]
-			iterateList [] = []
-			iterateList (x:xs) = datenListe x ++ iterateList xs
+			makeList :: [MulTree a] -> [Int]
+			makeList [] = []
+			makeList (x:xs) = (countList x) : [] ++ makeList xs 
 
+			countList :: MulTree a -> Int
+			countList (DatenKnoten _) = 0
+			countList (IndexKnoten _ _ (x:xs)) = 1 + countList x
+
+			maxInteger :: [Int] -> Int
+			maxInteger [] = 0
+			maxInteger (x:xs) = if x > (maxInteger xs) then x else maxInteger xs
 {--d)
 datenIntervalle :: MulTree Int ->-}
 
