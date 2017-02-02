@@ -1,4 +1,3 @@
---Made by Benjamin Stutte and not Paul Suetterlin
 --Aufgabe 2
 
 --a)
