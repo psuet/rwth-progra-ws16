@@ -17,11 +17,15 @@ divisibleBy :: Int -> List Int -> List Int
 divisibleBy n l = filterList (\x -> x `mod` n == 0) l
 
 -- Teilaufgabe c)
+-- Possible Solution
 --foldList :: (a-> b -> b) -> b -> List a -> b
+--foldList f c Nil = c
+--foldList f c (Cons a b) = f v (foldList f c b)
 
 -- Teilaufgabe d)
 listMaximum :: List Int -> Int
 listMaximum Nil = minBound
+--listMaximum (Cons v l) = foldList 
 
 --Teilaufgabe e)
 --zipLists :: (a-> b -> c) -> List a -> List b -> List c
