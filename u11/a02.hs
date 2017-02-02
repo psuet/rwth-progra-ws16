@@ -31,7 +31,7 @@ verzweigunggsgrad (IndexKnoten _ _ xs) = maxInteger (countList xs : makeList xs)
 --c)
 datenListe :: MulTree a -> [a]
 datenListe (DatenKnoten a) = a:[]
-datenListe (IndexKnoten a b xs) = a:b:iterateList xs
+datenListe (IndexKnoten a b xs) = iterateList xs --DANKE PAUL R.! Ersetzt: a:b:iterateList xs
 		where
 			iterateList :: [MulTree a] -> [a]
 			iterateList [] = []
