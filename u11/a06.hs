@@ -10,19 +10,21 @@ blist = Cons 1 (Cons 1 (Cons 0 (Cons 0 Nil)))
 -- Teilaufgabe a)
 filterList :: (a -> Bool) -> List a -> List a
 filterList f Nil = Nil
--- TODO
+filterList f (Cons a b) = if f then Cons a ++ filterList f b else filterList f b
 
 -- Teilaufgabe b)
 divisibleBy :: Int -> List Int -> List Int
 divisibleBy n l = filterList (\x -> x `mod` n == 0) l
 
 -- Teilaufgabe c)
-foldList :: (a-> b -> b) -> b -> List a -> b
+--foldList :: (a-> b -> b) -> b -> List a -> b
 
 -- Teilaufgabe d)
 listMaximum :: List Int -> Int
+listMaximum Nil = minBound
 
 --Teilaufgabe e)
-zipLists :: (a-> b -> c) -> List a -> List b -> List c
+--zipLists :: (a-> b -> c) -> List a -> List b -> List c
 
 --Teilaufgabe f)
+--skalarprodukt :: List Int -> List Int -> Int
