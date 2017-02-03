@@ -28,6 +28,11 @@ plus x y = x + y
 -- Teilaufgabe d)
 listMaximum :: List Int -> Int
 listMaximum Nil = minBound
+listMaximum (Cons a b) = listMaximum' (Cons a b) minBound
+
+listMaximum' :: List Int -> Int -> Int
+listMaximum' (Cons a b) max = if a > max then listMaximum' b a else listMaximum' b max
+listMaximum' Nil max = max
 
 --Teilaufgabe e)
 --zipLists :: (a-> b -> c) -> List a -> List b -> List c
