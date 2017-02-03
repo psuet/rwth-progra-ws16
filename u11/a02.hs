@@ -1,3 +1,4 @@
+--Made by Benjamin Stutte and not Paul Suetterlin
 --Aufgabe 2
 
 --a)
@@ -30,18 +31,31 @@ verzweigunggsgrad (IndexKnoten _ _ xs) = maxInteger (countList xs : makeList xs)
 --c)
 datenListe :: MulTree a -> [a]
 datenListe (DatenKnoten a) = a:[]
-datenListe (IndexKnoten a b xs) = iterateList xs --DANKE PAUL R.! Ersetzt: a:b:iterateList xs
+datenListe (IndexKnoten a b xs) = a:b:iterateList xs
 		where
 			iterateList :: [MulTree a] -> [a]
 			iterateList [] = []
 			iterateList (x:xs) = datenListe x ++ iterateList xs
-{--d)
-datenIntervalle :: MulTree Int ->-}
 
-{--e)
-contains :: Int -> (MulTree a -> [Int]) -> Bool --gesuchter Wer und Baum werden angegeben
-contains x [] = False --bei Erreichen der leeren Liste immer false, da Wer nicht gefunden
-contains x (y:ys) = if x == y True else contains x ys --Listenelemente auf Gleichheit mit geprüftem Wert durchsucht, bei ungleichheit rekursive übergabe der verbleibenden Liste
-contains x xs = -- Liste rekursiv durchlaufen
-contains x MulTree a = contains x (datenListe a) --1. Baum-Werteliste über contains-Funktion abgerufen
--}
+{--d)
+datenIntervalle :: MulTree Int -> MulTree Int
+datenIntervalle (DatenKnoten a) =
+datenIntervalle (IndexKnoten a b as) =-} 
+
+--e)
+contains :: Int -> MulTree Int -> Bool
+contains x (DatenKnoten a) = if a == x then True else False
+contains x (IndexKnoten a b as)	| a > x || x > b = False
+								| a == x || b == x = True
+								| otherwise containshelp x as
+								where
+									containshelp :: Int -> [MulTree Int] -> Bool
+									containshelp x [] = False
+									containshelp x (a:as) = contains x a
+
+{-contains :: Int -> MulTree Int -> Bool
+contains x t = treecontains x (datenListe t) 
+	where
+		treecontains :: Int -> [Int] -> Bool
+		treecontains a [] = False
+		treecontains a (x:xs) = if a == x then True else treecontains a xs
