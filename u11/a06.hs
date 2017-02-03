@@ -34,11 +34,15 @@ listMaximum' :: List Int -> Int -> Int
 listMaximum' (Cons a b) max = if a > max then listMaximum' b a else listMaximum' b max
 listMaximum' Nil max = max
 
---Teilaufgabe e)
+-- Teilaufgabe e)
 zipLists :: (a -> b -> c) -> List a -> List b -> List c
 zipLists _ _ Nil = Nil
 zipLists _ Nil _ = Nil
 zipLists f (Cons a b) (Cons c d) = (f a c) `Cons` zipLists f b d
 
---Teilaufgabe f)
---skalarprodukt :: List Int -> List Int -> Int
+-- Teilaufgabe f)
+skalarprodukt :: List Int -> List Int -> Int
+skalarprodukt a b = foldList plus 0 (zipLists skalarprodukt' a blist)
+
+skalarprodukt' :: Int -> Int -> Int
+skalarprodukt' a b = a * b
