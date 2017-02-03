@@ -35,7 +35,10 @@ listMaximum' (Cons a b) max = if a > max then listMaximum' b a else listMaximum'
 listMaximum' Nil max = max
 
 --Teilaufgabe e)
---zipLists :: (a-> b -> c) -> List a -> List b -> List c
+zipLists :: (a -> b -> c) -> List a -> List b -> List c
+zipLists _ _ Nil = Nil
+zipLists _ Nil _ = Nil
+zipLists f (Cons a b) (Cons c d) = (f a c) `Cons` zipLists f b d
 
 --Teilaufgabe f)
 --skalarprodukt :: List Int -> List Int -> Int
