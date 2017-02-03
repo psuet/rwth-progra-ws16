@@ -10,7 +10,7 @@ blist = Cons 1 (Cons 1 (Cons 0 (Cons 0 Nil)))
 -- Teilaufgabe a)
 filterList :: (a -> Bool) -> List a -> List a
 filterList f Nil = Nil
-filterList f (Cons a b) = if f a then a `Cons` filterList f b else filterList f b
+filterList f (Cons a b) = if f a then Cons a (filterList f b) else filterList f b
 
 -- Teilaufgabe b)
 divisibleBy :: Int -> List Int -> List Int
@@ -38,7 +38,7 @@ listMaximum' Nil max = max
 zipLists :: (a -> b -> c) -> List a -> List b -> List c
 zipLists _ _ Nil = Nil
 zipLists _ Nil _ = Nil
-zipLists f (Cons a b) (Cons c d) = (f a c) `Cons` zipLists f b d
+zipLists f (Cons a b) (Cons c d) = Cons (f a c) (zipLists f b d)
 
 -- Teilaufgabe f)
 skalarprodukt :: List Int -> List Int -> Int
