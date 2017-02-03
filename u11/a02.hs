@@ -2,9 +2,9 @@
 --Aufgabe 2
 
 --a)
-data MulTree a 	= IndexKnoten a a [MulTree a]
-                | DatenKnoten a
-                deriving Show
+data MulTree a = IndexKnoten a a [MulTree a]
+               | DatenKnoten a
+               deriving Show
 
 
 t1 :: MulTree Int
@@ -12,13 +12,13 @@ t1 = IndexKnoten 3 42 [IndexKnoten 3 15 [DatenKnoten 3, DatenKnoten 11, DatenKno
                         IndexKnoten 19 42 [DatenKnoten 42, DatenKnoten 23]
                     ]
 --b)
-verzweigunggsgrad :: MulTree a -> Int
-verzweigunggsgrad (DatenKnoten _) = 0
-verzweigunggsgrad (IndexKnoten _ _ xs) = maxInteger (countList xs : makeList xs)
+verzweigungsgrad :: MulTree a -> Int
+verzweigungsgrad (DatenKnoten _) = 0
+verzweigungsgrad (IndexKnoten _ _ xs) = maxInteger (countList xs : makeList xs)
         where
             makeList :: [MulTree a] -> [Int]
             makeList [] = []
-            makeList (x:xs) = countList xs : verzweigunggsgrad x : makeList xs
+            makeList (x:xs) = countList xs : verzweigungsgrad x : makeList xs
 
             countList :: [MulTree a] -> Int
             countList []  = 0
@@ -31,7 +31,7 @@ verzweigunggsgrad (IndexKnoten _ _ xs) = maxInteger (countList xs : makeList xs)
 --c)
 datenListe :: MulTree a -> [a]
 datenListe (DatenKnoten a) = a:[]
-datenListe (IndexKnoten a b xs) = a:b:iterateList xs
+datenListe (IndexKnoten a b xs) = iterateList xs
         where
             iterateList :: [MulTree a] -> [a]
             iterateList [] = []
@@ -45,17 +45,8 @@ datenIntervalle (IndexKnoten a b as) =-}
 --e)
 contains :: Int -> MulTree Int -> Bool
 contains x (DatenKnoten a) = if a == x then True else False
-contains x (IndexKnoten a b as)	| a > x || x > b = False
-                                | a == x || b == x = True
-                                | otherwise containshelp x as
-                                where
-                                    containshelp :: Int -> [MulTree Int] -> Bool
-                                    containshelp x [] = False
-                                    containshelp x (a:as) = contains x a
-
-{-contains :: Int -> MulTree Int -> Bool
-contains x t = treecontains x (datenListe t) 
-	where
-		treecontains :: Int -> [Int] -> Bool
-		treecontains a [] = False
-		treecontains a (x:xs) = if a == x then True else treecontains a xs
+contains x (IndexKnoten a b as) = if a > x || x > b then False else (if a == x || b == x then True else contains' x as)
+                            
+contains' :: Int -> [MulTree Int] -> Bool
+contains' x [] = False
+contains' x (a:as) = if contains x a then True else contains' x as
