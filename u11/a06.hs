@@ -42,7 +42,7 @@ zipLists f (Cons a b) (Cons c d) = Cons (f a c) (zipLists f b d)
 
 -- Teilaufgabe f)
 skalarprodukt :: List Int -> List Int -> Int
-skalarprodukt a b = foldList plus 0 (zipLists skalarprodukt' a blist)
+skalarprodukt a b = foldList plus 0 (zipLists skalarprodukt' a b)
 
 skalarprodukt' :: Int -> Int -> Int
 skalarprodukt' a b = a * b
