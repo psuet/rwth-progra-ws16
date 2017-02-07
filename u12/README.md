@@ -10,9 +10,11 @@
   * (iii)
   * (iv)
   * (v)
+Bearbeitung mit Remarkable oder[Online Editor](https://upmath.me/)
 
 * Aufgabe 6
   * a)
   * b)
 
 * Aufgabe 8
+Am Besten mit draw.io
