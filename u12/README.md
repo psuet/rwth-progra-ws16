@@ -10,7 +10,7 @@
   * (iii)
   * (iv)
   * (v)
-Bearbeitung mit Remarkable oder[Online Editor](https://upmath.me/)
+Bearbeitung mit Remarkable oder [Online Editor](https://upmath.me/)
 
 * Aufgabe 6
   * a)
