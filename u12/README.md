@@ -7,8 +7,6 @@
   * e)
 
 * Aufgabe 4
-  * (i)
-  * (ii)
   * (iii)
   * (iv)
   * (v)
